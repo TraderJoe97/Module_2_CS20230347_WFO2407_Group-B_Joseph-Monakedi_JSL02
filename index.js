@@ -24,7 +24,7 @@ const addNewGoal = () => {
     let isDuplicate = false;
     const existingGoals = goalList.querySelectorAll('li') //gets all Existing goals.
     existingGoals.forEach(goal => {
-        if (goalInput.toLowerCase() === goal.textContent.trim().toLowerCase()) {
+        if (goalInput.toLowerCase() === goal.textContent.toLowerCase()) {
             isDuplicate = true;
             return; // Exit loop if duplicate is found.
         }
