@@ -19,16 +19,24 @@ document.querySelector('#submitWorkout').addEventListener('click', displayWorkou
 // NOW LET'S DEBUG TO PREVENT DUPLICATE GOALS FROM BEING SUBMITTED 🚀
 
 const addNewGoal = () => {
-    const goalInput = document.querySelector('#goalInput').value;
+    const goalInput = document.querySelector('#goalInput').value.trim();
     const goalList = document.querySelector('#goalList');
     
-    // ⚠️ Hint 1: Check for duplicates
+    //Check for duplicates
     // Use 'goalList' to get all existing goals and check if 'goalInput' matches any of them.
-    
+    let isDuplicate = false;
+    const existingGoals = goalList.querySelectorAll('li') //gets all Existing goals.
+    goalList.forEach(goal => {
+        if (goalInput.toLowerCase() === goal.textContent.trim().toLowerCase()) {
+            isDuplicate = true;
+            return; // Exit loop if duplicate is found.
+        }
+    });
+
     // ⚠️ Hint 2: Prevent duplicates
     // If a duplicate is found, display an alert to the user and don't add the goal to the list.
     // If it's not a duplicate, proceed with adding it as a new goal.
-    
+
     // ⚠️ Hint 3: Code structure
     // You might want to wrap the duplicate-checking logic in an 'if' statement.
     
