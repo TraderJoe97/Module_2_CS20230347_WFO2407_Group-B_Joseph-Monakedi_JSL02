@@ -37,8 +37,8 @@ const addNewGoal = () => {
         alert("Goal already exists!");
     } else {
         const newGoal = document.createElement('li');
-    newGoal.textContent = goalInput;
-    goalList.appendChild(newGoal);
+        newGoal.textContent = goalInput;
+        goalList.appendChild(newGoal);
     }
        
     
