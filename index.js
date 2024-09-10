@@ -71,7 +71,49 @@ const toggleTheme = () => {
 document.querySelector('#themeToggle').addEventListener('click', toggleTheme);
 
 const submitMealPlan = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
+
+    // Extract meal data from form inputs
+    const mealPlanForm = document.getElementById("mealPlanForm");
+    const mondayMeal = mealPlanForm.querySelector('[placeholder="Monday\'s Meal"]').value;
+    const tuesdayMeal = mealPlanForm.querySelector('[placeholder="Tuesday\'s Meal"]').value;
+    const wednesdayMeal = mealPlanForm.querySelector('[placeholder="Wednesday\'s Meal"]').value;
+    const thursdayMeal = mealPlanForm.querySelector('[placeholder="Thursday\'s Meal"]').value;
+    const fridayMeal = mealPlanForm.querySelector('[placeholder="Friday\'s Meal"]').value;
+    const saturdayMeal = mealPlanForm.querySelector('[placeholder="Saturday\'s Meal"]').value;
+    const sundayMeal = mealPlanForm.querySelector('[placeholder="Sunday\'s Meal"]').value;
+
+    console.log("Extracted meal data:", mondayMeal, tuesdayMeal, wednesdayMeal, thursdayMeal, fridayMeal, saturdayMeal, sundayMeal);
+
+    // Create a meal plan object
+    const mealPlan = {
+        monday: mondayMeal,
+        tuesday: tuesdayMeal,
+        wednesday: wednesdayMeal,
+        thursday: thursdayMeal,
+        friday: fridayMeal,
+        saturday: saturdayMeal,
+        sunday: sundayMeal
+    };
+
+    console.log("Created meal plan object:", mealPlan);
+
+    // Check for duplicate meals
+    const mealValues = Object.values(mealPlan).map(meal => meal.toLowerCase());
+    const uniqueMeals = new Set(mealValues); /* sets do not contain duplicates */
+
+    console.log("Meal values:", mealValues);
+    console.log("Unique meals:", uniqueMeals);
+
+    if (mealValues.length !== uniqueMeals.size) {
+        console.log("Duplicate meals found.");
+        alert('You have entered duplicate meals. Please ensure that each meal is unique.');
+        return;
+    }
+
+    console.log("No duplicate meals found.");
+
+    // Display a success message
     alert('Meal plan submitted successfully! 🍴');
 };
 
